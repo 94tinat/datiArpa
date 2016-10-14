@@ -1,6 +1,15 @@
 # dbArpa
 Database di raccolta dati del sito www.Arpae.it
 
+**Requisiti:**
+* Aver installato NodeJs dal sito https://nodejs.org
+* Digitare da terminale, nel percorso della directory:
+> **npm i**
+
+Per installare le dipendenze di NodeJs, inserite nel file **package.json**
+
+**Guida:**
+
 Per avviare lo script bisogna digitare da terminale, nel percorso della directory:
 >**node script**
 
