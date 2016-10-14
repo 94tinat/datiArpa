@@ -1,0 +1,20 @@
+{
+  "name": "db-arpa",
+  "version": "0.0.1",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "dateformat": "^1.0.12",
+    "express": "3.4.8",
+    "http": "0.0.0",
+    "mysql": "2.9.0",
+    "node-cmd": "^1.1.1",
+    "sync-request": "^3.0.1"
+  },
+  "author": "Valentina Tosto",
+  "license": "ISC"
+}
