@@ -2,7 +2,8 @@
 Database di raccolta dati del sito www.Arpae.it
 
 **Requisiti:**
-* Aver installato NodeJs dal sito https://nodejs.org
+* Installare Mysql
+* Installare NodeJs dal sito https://nodejs.org
 * Digitare da terminale, nel percorso della directory:
 > **npm i**
 
