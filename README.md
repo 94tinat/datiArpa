@@ -14,6 +14,6 @@ Per avviare lo script bisogna digitare da terminale, nel percorso della director
 >**node script**
 
 Nel file **script.js** si può modificare la function _getDate_, nella variabile _dateTime2_ all'ultima posizione della riga,
-il n° dei giorni prima del giorno corrente (da inserire poi nell'url dei dati sulla qualità dell'aria, per indicare il periodo nel quale visionare i dati di una determinata stazione) - di default ora è 1 giorno prima -
+il n° dei giorni prima del giorno corrente (da inserire poi nell'url dei dati sulla qualità dell'aria, per indicare il periodo nel quale visionare i dati di una determinata stazione) - di default ora è 3 giorni prima -
 
 
