@@ -17,16 +17,13 @@ app.listen(port, function () {
  console.log('\nExpress server inizializzato sulla porta ' + port);
 });
 
-//Avvio della scrittura di un file csv
-var writer = csvWriter();
-
 //Funzione che ritorna la data e ora corrente
 var getDate = function() {
 
     var dateTime = new Date();
     var dateToday = (dateTime.getDate())+ "."+ (dateTime.getMonth()+1) + "."+dateTime.getFullYear();
-    //L'1 indica il giorno prima di quello corrente
-    var dateTime2 = dateTime - 1000 * 60 * 60 * 24 * 1;
+    //L'ultimo numero indica il/i giorno/i prima di quello corrente
+    var dateTime2 = dateTime - 1000 * 60 * 60 * 24 * 3;
     dateTime2 = new Date(dateTime2);
 
     var dateStarting = dateFormat(dateTime2, "dd.mm.yyyy");
@@ -43,6 +40,9 @@ var inquinanti = [5,7,8,10];
 
 /* Aria */
 
+//Avvio della scrittura di un file csv
+var writer = csvWriter();
+
 //Creazione del file csv relativo all'aria
 writer.pipe(fs.createWriteStream('inquinantiAria.csv'));
 
@@ -52,6 +52,7 @@ for(var i = 0; i < listProvince.length; i++) {
     var response1 = syncRequest('GET','http://www.arpae.it/v2_rete_di_monitoraggio.asp?p='+listProvince[i]+'&idlivello=1637');
 
     $ = cheerio.load(response1.getBody('utf-8'));
+
     for(var j = 0; j < $('table').find('select').children().length; j++) {
             stazioni.push($('table').find('select').find('option').eq(j).attr('value'));
     }
@@ -64,6 +65,7 @@ for(var i = 0; i < listProvince.length; i++) {
             $ = cheerio.load(response2.getBody('utf-8'));
 
             if($('table').html() != null) {
+
                 for(var y = 1; y < $('table').find('tr').length; y++) {
                     var stazione = $('table').find('tr').eq(y).find('td').eq(0).html();
                     var dataInizio = $('table').find('tr').eq(y).find('td').eq(1).html();
@@ -98,7 +100,9 @@ writer.end();
 
 /* Campi elettromagnetici */
 
+//Avvio della scrittura di un file csv
 var writer = csvWriter();
+
 //Creazione del file csv relativo ai campi elettromagnetici
 writer.pipe(fs.createWriteStream('campiElettroMagnetici.csv'));
 
@@ -134,22 +138,10 @@ for(var i = 0; i < listProvince.length; i++) {
                         var limite = "oltre il limite";
                         break;
                 }
-
             }
 
             //Scrittura dei vari campi nel file
             writer.write({provincia: listProvince[i], comune: comune, indirizzo: indirizzo, valoreMax: valPreciso, limite: limite});
-
-            /*var db = mysql.createConnection(db_config);
-
-            db.query('INSERT INTO CampiElettro(provincia, comune, indirizzo, valoreMax, limite) VALUES("'+listProvince[i]+'","'+comune+'", "'+indirizzo+'", "'+valPreciso+'", "'+limite+'")', function (err, rows, fields) {
-                if (!err) {
-                    console.log(rows);
-                } else {
-                    console.log(err);
-                }
-            });
-            db.end();*/
         }
 
     }
@@ -159,7 +151,9 @@ writer.end();
 
 /* Indice pollini */
 
+//Avvio della scrittura di un file csv
 var writer = csvWriter();
+
 //Creazione del file csv relativo all'indice dei pollini
 writer.pipe(fs.createWriteStream('indicePollini.csv'));
 
@@ -188,15 +182,6 @@ for(var i = 0; i < listLocation.length; i++) {
 
     //Scrittura dei vari campi nel file
     writer.write({località: location, periodo: settimana, mediaSettBetulacee: mediaB, livelloBetulacee: livB, mediaSettCorilacee: mediaCo, livelloCorilacee: livCo, mediaSettGraminacee: mediaG, livelloGraminacee: livG, mediaSettCupressacee: mediaCu, livelloCupressacee: livCu});
-    /*var db = mysql.createConnection(db_config);
 
-    db.query('INSERT INTO Pollini(localita, periodo, mediaSettBetulacee, livelloB, mediaSettCorilacee, livelloCo, mediaSettGraminacee, livelloG, mediaSettCupressacee, livelloCu) VALUES("'+location+'","'+settimana+'", "'+mediaB+'", "'+livB+'", "'+mediaCo+'", "'+livCo+'", "'+mediaG+'", "'+livG+'", "'+mediaCu+'", "'+livCu+'")', function (err, rows, fields) {
-        if (!err) {
-            console.log(rows);
-        } else {
-            console.log(err);
-        }
-    });
-    db.end();*/
 }
 writer.end();
