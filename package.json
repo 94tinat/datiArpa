@@ -8,11 +8,11 @@
   },
   "dependencies": {
     "cheerio": "^0.22.0",
+    "csv-write-stream": "^2.0.0",
     "dateformat": "^1.0.12",
     "express": "3.4.8",
+    "fs": "0.0.1-security",
     "http": "0.0.0",
-    "mysql": "2.9.0",
-    "node-cmd": "^1.1.1",
     "sync-request": "^3.0.1"
   },
   "author": "Valentina Tosto",
