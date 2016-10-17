@@ -1,5 +1,5 @@
-# dbArpa
-Database di raccolta dati del sito www.Arpae.it
+# datiArpa
+Creazione di file .csv per la raccolta dati del sito www.Arpae.it
 
 **Requisiti:**
 * Installare NodeJs dal sito https://nodejs.org
